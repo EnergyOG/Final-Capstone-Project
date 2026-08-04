@@ -15,31 +15,34 @@ def lambda_handler(event, context):
 
 
     table.update_item(
-        Key={
-            "id": event_id
-        },
+    Key={
+        "id": event_id
+    },
 
-        UpdateExpression="""
-        SET title=:title,
-            description=:description,
-            #date=:date,
-            #time=:time,
-            location=:location
-        """,
+    UpdateExpression="""
+    SET #title=:title,
+        #description=:description,
+        #date=:date,
+        #time=:time,
+        #location=:location
+    """,
 
-        ExpressionAttributeNames={
-            "#date":"date",
-            "#time":"time"
-        },
+    ExpressionAttributeNames={
+        "#title": "title",
+        "#description": "description",
+        "#date": "date",
+        "#time": "time",
+        "#location": "location"
+    },
 
-        ExpressionAttributeValues={
-            ":title":body["title"],
-            ":description":body["description"],
-            ":date":body["date"],
-            ":time":body["time"],
-            ":location":body["location"]
-        }
-    )
+    ExpressionAttributeValues={
+        ":title": body["title"],
+        ":description": body["description"],
+        ":date": body["date"],
+        ":time": body["time"],
+        ":location": body["location"]
+    }
+)
 
 
     return {
