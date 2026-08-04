@@ -5,10 +5,8 @@ function LandingPage() {
       className="relative h-100 bg-cover bg-center flex items-center"
       style={{ backgroundImage: `url(${bgimage})` }}
     >
-      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
           Event Management Dashboard
