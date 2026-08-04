@@ -1,8 +1,8 @@
-import bgimage from "../assets/landing-img.png";
+import bgimage from "../assets/bg-img2.png";
 function LandingPage() {
   return (
     <section
-      className="relative h-100 bg-cover bg-center flex items-center"
+      className="relative h-screen bg-cover bg-center flex items-center"
       style={{ backgroundImage: `url(${bgimage})` }}
     >
       <div className="absolute inset-0 bg-black/60"></div>
