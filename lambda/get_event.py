@@ -1,6 +1,8 @@
 import json
 import boto3
+import os
 
+ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "*")
 
 dynamodb = boto3.resource("dynamodb")
 
@@ -24,14 +26,24 @@ def lambda_handler(event, context):
 
     if not item:
         return {
-            "statusCode":404,
-            "body":json.dumps({
-                "message":"Event not found"
+            "statusCode": 404,
+            "headers": {
+                "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "OPTIONS,GET,POST,PUT,DELETE"
+            },
+            "body": json.dumps({
+                "message": "Event not found"
             })
         }
 
 
     return {
         "statusCode":200,
+        "headers": {
+        "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "OPTIONS,GET,POST,PUT,DELETE"
+    },
         "body":json.dumps(item)
     }
