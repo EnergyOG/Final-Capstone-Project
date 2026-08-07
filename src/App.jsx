@@ -42,11 +42,11 @@ function App() {
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
             <p className="text-sm text-slate-300">Operations</p>
-            <p className="mt-2 text-3xl font-bold text-white">CRUD</p>
+            <p className="mt-2 text-3xl font-bold text-white">Event Managment</p>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
             <p className="text-sm text-slate-300">Status</p>
-            <p className="mt-2 text-3xl font-bold text-emerald-400">Online</p>
+            <p className="mt-2 text-3xl font-bold text-emerald-400">Available Events</p>
           </div>
         </div>
 
