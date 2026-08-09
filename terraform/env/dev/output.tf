@@ -23,3 +23,8 @@ output "dynamodb_tables" {
   value = module.dynamodb.tables
 
 }
+
+output "sns_topic_arn" {
+  description = "ARN of the notification topic."
+  value       = module.sns.topic_arn
+}

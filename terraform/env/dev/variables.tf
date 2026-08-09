@@ -18,7 +18,7 @@ variable "environment" {
 
 variable "project_name" {
 
-  description = "Project name"
+  description = "fcp"
 
   type = string
 
@@ -49,4 +49,10 @@ variable "lambda_memory" {
 
   type = number
 
+}
+
+variable "allowed_origin" {
+  description = "Browser origin allowed to call the API. Use * only for development."
+  type        = string
+  default     = "*"
 }
