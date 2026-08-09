@@ -10,7 +10,7 @@ SNS_TOPIC_ARN = os.environ.get("SNS_TOPIC_ARN")
 dynamodb = boto3.resource("dynamodb")
 sns = boto3.client("sns")
 
-table = dynamodb.Table("Events")
+table = dynamodb.Table(os.environ["EVENTS_TABLE"])
 
 
 def lambda_handler(event, context):

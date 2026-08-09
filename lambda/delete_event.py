@@ -6,7 +6,7 @@ ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "*")
 
 dynamodb = boto3.resource("dynamodb")
 
-table = dynamodb.Table("Events")
+table = dynamodb.Table(os.environ["EVENTS_TABLE"])
 
 
 def lambda_handler(event, context):
