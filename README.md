@@ -221,8 +221,5 @@ curl -X POST "$API_URL/events" \
 
 ## Author
 
-Add your name, portfolio URL, LinkedIn profile, and GitHub profile here when preparing the project for presentation.
+Dennis Peprah
 
-## License
-
-Add the license that applies to this project, for example MIT.
