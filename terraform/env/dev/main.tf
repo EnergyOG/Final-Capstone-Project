@@ -1,5 +1,5 @@
 module "dynamodb" {
-  source = "../../modules/dynamodb"
+  source = "../../modules/dynamoDB"
 
   project_name = var.project_name
   environment  = var.environment
