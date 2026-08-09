@@ -23,3 +23,12 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Terraform working files. Provider selections remain tracked in .terraform.lock.hcl.
+**/.terraform/*
+!**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+

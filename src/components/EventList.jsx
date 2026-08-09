@@ -1,6 +1,36 @@
 import { useEffect, useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, "");
+const COLLAPSE_LIMIT = 20;
+
+function EventDescription({ text }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const words = text?.trim() ? text.trim().split(/\s+/) : [];
+  const shouldCollapse = words.length > COLLAPSE_LIMIT;
+  const preview = shouldCollapse ? words.slice(0, COLLAPSE_LIMIT).join(" ") + "..." : text;
+
+  if (!text) {
+    return <p className="mt-3 text-slate-300">No description provided.</p>;
+  }
+
+  return (
+    <div className="mt-3">
+      <p className="text-slate-300">
+        {isExpanded || !shouldCollapse ? text : preview}
+      </p>
+
+      {shouldCollapse && (
+        <button
+          type="button"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          className="mt-2 inline-flex items-center text-sm font-semibold text-indigo-300 transition hover:text-indigo-200"
+        >
+          {isExpanded ? "Read less" : "Read more"}
+        </button>
+      )}
+    </div>
+  );
+}
 
 function EventList({ refresh, onEventDeleted, onEditEvent }) {
   const [events, setEvents] = useState([]);
@@ -101,7 +131,7 @@ function EventList({ refresh, onEventDeleted, onEditEvent }) {
                     {event.date} • {event.time}
                   </p>
 
-                  <p className="mt-3 text-slate-300">{event.description}</p>
+                  <EventDescription text={event.description} />
 
                   <p className="mt-4 text-sm text-slate-400">📍 {event.location}</p>
                 </div>
