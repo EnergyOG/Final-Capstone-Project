@@ -1,3 +1,12 @@
+module "github_actions_oidc" {
+  source = "../../modules/github_actions_oidc"
+
+  project_name      = var.project_name
+  environment       = var.environment
+  github_repository = "EnergyOG/Final-Capstone-Project"
+  github_environment = "development"
+}
+
 module "dynamodb" {
   source = "../../modules/dynamodb"
 
