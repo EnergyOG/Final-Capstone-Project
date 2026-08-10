@@ -113,13 +113,25 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
 
+      - name: Confirm deployment OIDC inputs are present
+        shell: bash
+        run: |
+          if [ -z "${{ secrets.AWS_ROLE_TO_ASSUME }}" ]; then
+            echo "AWS_ROLE_TO_ASSUME is missing from the GitHub environment named development."
+            exit 1
+          fi
+          if [ -z "${{ vars.AWS_REGION }}" ]; then
+            echo "AWS_REGION is not configured for the GitHub environment named development; defaulting to us-east-1."
+          fi
+
       - name: Configure AWS credentials through OpenID Connect
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+          audience: sts.amazonaws.com
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           role-session-name: github-actions-event-management-platform
-      
+
       - name: Test AWS OIDC authentication
         run: aws sts get-caller-identity
 
