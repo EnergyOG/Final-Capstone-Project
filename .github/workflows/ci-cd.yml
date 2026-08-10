@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  NODE_VERSION: "20"
+  NODE_VERSION: "24"
   PYTHON_VERSION: "3.12"
   TERRAFORM_VERSION: "1.14.8"
   TERRAFORM_WORKING_DIRECTORY: terraform/env/dev
