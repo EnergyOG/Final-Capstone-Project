@@ -3,8 +3,10 @@ name: CI and deploy development infrastructure
 on:
   pull_request:
     branches: [main]
+
   push:
     branches: [main]
+
   workflow_dispatch:
     inputs:
       deploy:
@@ -28,6 +30,7 @@ env:
   TERRAFORM_WORKING_DIRECTORY: terraform/env/dev
 
 jobs:
+
   frontend:
     name: Frontend quality checks
     runs-on: ubuntu-latest
@@ -59,6 +62,7 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
+
   lambda:
     name: Lambda syntax checks
     runs-on: ubuntu-latest
@@ -74,6 +78,7 @@ jobs:
 
       - name: Compile Lambda handlers
         run: python -m compileall -q lambda
+
 
   terraform-validate:
     name: Terraform format and validation
@@ -100,13 +105,23 @@ jobs:
         working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
         run: terraform validate
 
+
   deploy-development:
     name: Plan and deploy development
-    needs: [frontend, lambda, terraform-validate]
+    needs:
+      - frontend
+      - lambda
+      - terraform-validate
+
     runs-on: ubuntu-latest
+
     if: >-
       github.ref == 'refs/heads/main' &&
-      (github.event_name == 'push' || github.event.inputs.deploy == 'true')
+      (
+        github.event_name == 'push' ||
+        github.event.inputs.deploy == 'true'
+      )
+
     environment: development
 
     steps:
