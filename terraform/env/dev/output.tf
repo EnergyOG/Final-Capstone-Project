@@ -1,3 +1,8 @@
+output "github_actions_oidc_role_arn" {
+  description = "ARN of the IAM role trusted by GitHub Actions through OIDC."
+  value       = module.github_actions_oidc.github_actions_role_arn
+}
+
 output "api_gateway_url" {
 
   description = "API Gateway endpoint"
