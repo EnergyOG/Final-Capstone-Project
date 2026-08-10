@@ -2,6 +2,7 @@
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "GithubActionsDevelopmentEnvironment",
       "Effect": "Allow",
       "Principal": {
         "Federated": "arn:aws:iam::035848830557:oidc-provider/token.actions.githubusercontent.com"
@@ -9,7 +10,25 @@
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringEquals": {
-          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
+          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+        },
+        "StringLike": {
+          "token.actions.githubusercontent.com:sub": "repo:EnergyOG/Final-Capstone-Project:environment:development"
+        }
+      }
+    },
+    {
+      "Sid": "GithubActionsMainBranch",
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::035848830557:oidc-provider/token.actions.githubusercontent.com"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+        },
+        "StringEquals": {
           "token.actions.githubusercontent.com:sub": "repo:EnergyOG/Final-Capstone-Project:ref:refs/heads/main"
         }
       }
