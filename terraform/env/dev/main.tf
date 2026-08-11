@@ -1,10 +1,14 @@
 module "github_actions_oidc" {
   source = "../../modules/github_actions_oidc"
 
-  project_name       = var.project_name
-  environment        = var.environment
-  github_repository  = "EnergyOG/Final-Capstone-Project"
-  github_environment = "development"
+  project_name           = var.project_name
+  environment            = var.environment
+  github_repository      = var.github_repository
+  github_owner           = var.github_owner
+  github_owner_id        = var.github_owner_id
+  github_repository_id   = var.github_repository_id
+  github_environment     = var.github_environment
+  github_repository_name = var.github_repository_name
 }
 
 module "dynamodb" {
