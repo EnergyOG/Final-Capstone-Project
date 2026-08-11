@@ -13,7 +13,27 @@ variable "github_repository" {
   type        = string
 }
 
+variable "github_owner" {
+  description = "GitHub repository owner."
+  type        = string
+}
+
+variable "github_owner_id" {
+  description = "GitHub repository owner ID."
+  type        = string
+}
+
+variable "github_repository_name" {
+  description = "GitHub repository name."
+  type        = string
+}
+
+variable "github_repository_id" {
+  description = "GitHub repository ID."
+  type        = string
+}
+
 variable "github_environment" {
-  description = "The GitHub Actions environment name, e.g. development."
+  description = "GitHub Actions environment name."
   type        = string
 }
