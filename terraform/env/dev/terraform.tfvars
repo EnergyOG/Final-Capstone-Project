@@ -17,3 +17,15 @@ lambda_memory = 256
 
 # Restrict this to the deployed frontend's URL outside local development.
 allowed_origin = "http://localhost:5173"
+
+github_owner = "EnergyOG"
+
+github_owner_id = "174284503"
+
+github_repository = "Final-Capstone-Project"
+
+github_repository_name = "Final-Capstone-Project"
+
+github_repository_id = "1323330424"
+
+github_environment = "development"
