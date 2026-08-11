@@ -113,16 +113,17 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
 
-      - name: Confirm deployment OIDC inputs are present
+      - name: Debug GitHub OIDC claims
         shell: bash
         run: |
-          if [ -z "${{ secrets.AWS_ROLE_TO_ASSUME }}" ]; then
-            echo "AWS_ROLE_TO_ASSUME is missing from the GitHub environment named development."
-            exit 1
-          fi
-          if [ -z "${{ vars.AWS_REGION }}" ]; then
-            echo "AWS_REGION is not configured for the GitHub environment named development; defaulting to us-east-1."
-          fi
+          set -euo pipefail
+
+          TOKEN="$(curl -sS \
+            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" \
+            | python -c 'import sys,json; print(json.load(sys.stdin)["value"])')"
+
+          echo "$TOKEN" | cut -d '.' -f2 | base64 --decode 2>/dev/null | python -m json.tool
 
       - name: Configure AWS credentials through OpenID Connect
         uses: aws-actions/configure-aws-credentials@v4
