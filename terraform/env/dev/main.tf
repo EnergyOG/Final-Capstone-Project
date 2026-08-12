@@ -53,6 +53,7 @@ module "api_gateway" {
   source = "../../modules/api_gateway"
 
   project_name     = var.project_name
+  aws_region       = var.aws_region
   environment      = var.environment
   allowed_origins  = [var.allowed_origin]
   lambda_functions = module.lambda.lambda_functions
