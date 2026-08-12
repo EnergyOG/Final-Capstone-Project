@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 locals {
   routes = {
     create_event = { method = "POST", path = "events" }
@@ -50,5 +52,6 @@ resource "aws_lambda_permission" "api_gateway" {
   action        = "lambda:InvokeFunction"
   function_name = var.lambda_functions[each.key].name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.this.execution_arn}/*/*"
+
+  source_arn = "arn:aws:execute-api:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${aws_apigatewayv2_api.this.id}/*/*"
 }
