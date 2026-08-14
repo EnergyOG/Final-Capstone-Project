@@ -16,7 +16,7 @@ lambda_timeout = 10
 lambda_memory = 256
 
 # Restrict this to the deployed frontend's URL outside local development.
-allowed_origin = "http://localhost:5173"
+allowed_origin = "*"
 
 github_owner = "EnergyOG"
 
