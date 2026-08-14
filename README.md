@@ -4,6 +4,9 @@ A full-stack event management platform for administrators to create, view, updat
 
 > Replace the image placeholders below with screenshots from your deployed application before showcasing the project.
 
+## Link to live App
+https://z0k9baya16.execute-api.us-east-1.amazonaws.com/
+
 ## Showcase
 
 ### Landing page
